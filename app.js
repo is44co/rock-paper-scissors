@@ -5,18 +5,23 @@ const svg=document.querySelectorAll('svg');
 let myScore=document.querySelector('.playerScore');
 let compScore=document.querySelector('.compScore');
 let reset =document.querySelector('.reset')
-
+let result=document.querySelector('.result')
 let userChoice ;
 
 
 function User() {
   svg.forEach((n) => {
     n.addEventListener('click', () => {
-       userChoice = n.getAttribute('data-value'); //
-	  
-	   playRound();
+   
+      
+       userChoice = n.getAttribute('data-value'); 
+     
+    
+     
+	   playRound(n);
  
     });
+    
   });
 
 }
@@ -34,7 +39,7 @@ function Computer(){
 	}
 }
 function playRound() {
-	
+	  
 	computerChoice=Computer();
 	if (
     (userChoice === "rock" && computerChoice === "scissors") ||
@@ -43,43 +48,40 @@ function playRound() {
   ) {
 	myScore.textContent = parseInt(myScore.textContent) + 1;
 
-  console.log (
-      "you choose " +
-    userChoice +
-      " and the computer choice  is " +
-    computerChoice +
-      " so you win"
-    );
+ result.textContent= "you choose " +
+  userChoice +' and the computer choice  is ' +
+ computerChoice +" so you win";
 
 
   } else if (userChoice === computerChoice) {
-  alert( "its A draw");
-  } else {
-    compScore.textContent++;
-   console.log (
-      "you choose " +
-      userChoice +
-      " and the computer choice  is " +
-      computerChoice +
-      " so you lost"
-    );
- 
+  result.textContent=( ` you choose ${userChoice} and the computer choose ${computerChoice} so  its A draw`);
+  } 
+
+
+
+
+
+if (myScore.textContent >= 3) {
+	result.textContent="Congratulations! You won the game!";
   
-}
-if (myScore.textContent > 5) {
-	alert("Congratulations! You won the game!");
-	myScore.textContent=0;
-	compScore.textContent=0;
-	  } else if (compScore.textContent > 5) {
-		myScore.textContent=0;
-	compScore.textContent=0;
-		alert("Sorry, you lost the game.");
+  setTimeout(resetGame,1000)
+ 
+	  } else if (compScore.textContent >= 3) {
+      
+ 
+	result.textContent="Sorry, you lost the game.";
+  setTimeout(resetGame,1000)
 	  }
 }
 
 reset.addEventListener('click',()=>{
 
+  resetGame()
 
+})
+function resetGame(){
 	myScore.textContent=0;
 	compScore.textContent=0;
-})
+  result.textContent='';
+
+}

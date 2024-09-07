@@ -11,6 +11,12 @@
     cursor: pointer;
 
   }
+  @media (max-width:500px) {
+     svg{
+      width: 100px;
+      height: 100px;
+     }
+  }
   
 </style>
 </head>
@@ -27,6 +33,7 @@
 <p >Your Score <span class="playerScore">0</span></p>
 <p >Computer Score <span class="compScore">0</span></p>
 <button class="reset">Reset</button>
+<p class="result"></p>
 <script src="app.js" defer></script>
 </body>
 </html>

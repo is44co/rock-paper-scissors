@@ -53,9 +53,16 @@ function playRound() {
  computerChoice +" so you win";
 
 
-  } else if (userChoice === computerChoice) {
+  }
+  
+   else if (userChoice === computerChoice) {
   result.textContent=( ` you choose ${userChoice} and the computer choose ${computerChoice} so  its A draw`);
   } 
+  else {
+
+	compScore.textContent = parseInt(compScore.textContent) + 1;
+	result.textContent=( ` you choose ${userChoice} and the computer choose ${computerChoice} so  you lost`);
+  }
 
 
 
